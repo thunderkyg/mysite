@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,35 +12,7 @@
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="./main">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->
-			<ul>
-				<li><a href="./user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="./gbc?action=addlist">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<jsp:include page="/WEB-INF/view/includes/header.jsp"></jsp:include>
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -55,7 +26,7 @@
 			<!-- //aside -->
 
 			<div id="content">
-			
+
 				<div id="content-head">
 					<h3>회원가입</h3>
 					<div id="location">
@@ -68,16 +39,14 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="user">
 					<div id="joinOK">
-					
+
 						<p class="text-large bold">
-							회원가입을 축하합니다.<br>
-							<br>
-							<a href="" >[로그인하기]</a>
+							회원가입을 축하합니다.<br> <br> <a href="">[로그인하기]</a>
 						</p>
-							
+
 					</div>
 					<!-- //joinOK -->
 				</div>
@@ -88,10 +57,7 @@
 		<!-- //container  -->
 
 
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
-		<!-- //footer -->
+		<jsp:include page="/WEB-INF/view/includes/footer.jsp"></jsp:include>
 
 	</div>
 	<!-- //wrap -->

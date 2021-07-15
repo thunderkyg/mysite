@@ -72,5 +72,103 @@ public class UserDao {
 		close();
 		return count;
 	}
+	
+	//UserUpdate
+	public int userUpdate(UserVo userVo) {
+		int count = -1;
+		getConnection();
+		
+		try {
+			String query = "";
+			query += " update users ";
+			query += " set password = ?, ";
+			query += "     name = ?, ";
+			query += "     gender = ? ";
+			query += " where no = ?	 ";
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userVo.getPw());
+			pstmt.setString(2, userVo.getName());
+			pstmt.setString(3, userVo.getGender());
+			pstmt.setInt(4, userVo.getNo());
+
+			count = pstmt.executeUpdate();
+			System.out.println(count + "건이 등록되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close();
+		return count;
+	}
+
+	// Select 1 User
+	public UserVo getUser(String id, String pw) {
+
+		UserVo userVo = null;
+		getConnection();
+
+		try {
+			String query = "";
+			query += " select no, name";
+			query += " from users ";
+			query += " where id = ? ";
+			query += " and password = ? ";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+
+				userVo = new UserVo();
+				userVo.setNo(no);
+				userVo.setName(name);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close();
+		return userVo;
+	}
+	
+	// Select 1 User Info
+	public UserVo getUserInfo(int userNo) {
+		
+		UserVo userVo = null;
+		getConnection();
+		
+		try {
+			String query = "";
+			query += " select no, id, password, name, gender";
+			query += " from users ";
+			query += " where no = ? ";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int no = rs.getInt("no");
+				String id = rs.getString("id");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+				
+				userVo = new UserVo(no, id, password, name, gender);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close();
+		return userVo;
+	}
+	
+//	//Update
+//	public int userUpdate(UserVo userVo) {
+//		
+//		int count = -1;
+//		
+//	}
 
 }

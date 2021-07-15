@@ -3,6 +3,7 @@ package com.javaex.vo;
 public class UserVo {
 	
 	//Field
+	private int no;
 	private String id;
 	private String pw;
 	private String name;
@@ -13,14 +14,28 @@ public class UserVo {
 
 	}
 	
+	public UserVo(int no, String pw, String name, String gender) {
+		this.no = no;
+		this.pw = pw;
+		this.name = name;
+		this.gender = gender;
+	}
+	
 	public UserVo(String id, String pw, String name, String gender) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.gender = gender;
 	}
-
 	
+	public UserVo(int no, String id, String pw, String name, String gender) {
+		this.no = no;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.gender = gender;
+	}
+
 	//Method - gs
 	public String getId() {
 		return id;
@@ -54,10 +69,19 @@ public class UserVo {
 		this.gender = gender;
 	}
 
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
 	//Method - Ordinary
+	
 	@Override
 	public String toString() {
-		return "UserVo [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + "]";
+		return "UserVo [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + "]";
 	}
 	
 
