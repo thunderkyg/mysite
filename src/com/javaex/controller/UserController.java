@@ -125,10 +125,12 @@ public class UserController extends HttpServlet {
 			UserVo userVo = new UserVo(no, password, name, gender);
 			userDao.userUpdate(userVo);
 			
-			//Session 덮어쓰기
-			UserVo userVoSession = userDao.getUser(id, password);
+			//Session 덮어쓰기 -> 잘못된 방법...
+//			UserVo userVoSession = userDao.getUser(id, password);
 			HttpSession session = request.getSession();
-			session.setAttribute("authUser", userVoSession);
+			
+			//세션 이름 정보 업데이트
+			((UserVo)session.getAttribute("authUser")).setName(name);
 			
 			//Redirect
 			WebUtil.redirect(request, response, "./main");
