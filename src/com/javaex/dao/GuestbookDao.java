@@ -107,7 +107,7 @@ public class GuestbookDao {
 				pstmt.setString(3, guestbookVo.getContent());
 
 				count = pstmt.executeUpdate();
-
+				
 				// 결과처리
 				System.out.println(count + "건이 등록되었습니다.");
 			} catch (SQLException e) {

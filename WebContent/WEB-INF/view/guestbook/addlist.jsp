@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page import="com.javaex.vo.UserVo"%>
+<%-- <%@ page import="com.javaex.vo.UserVo"%>
 <%@ page import="com.javaex.dao.GuestbookDao"%>
 <%@ page import="com.javaex.vo.GuestbookVo"%>
 <%@ page import="java.util.List"%>
@@ -12,7 +13,7 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 //Get Attribute = Controller에서 리스트
 List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("guestList");
-%>
+%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gues
 <body>
 	<div id="wrap">
 
-		<jsp:include page="/WEB-INF/view/includes/header.jsp"></jsp:include>
+		<c:import url="/WEB-INF/view/includes/header.jsp"></c:import>
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -84,9 +85,11 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gues
 
 					</form>
 
-					<%
+<%-- 					<%
 					for (int i = 0; i < guestbookList.size(); i++) {
-					%>
+					%> --%>
+					
+					<c:forEach items="${guestList}" var="guestbookList" varStatus="status">
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -94,21 +97,24 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gues
 							<col style="width: 40%;">
 							<col style="width: 10%;">
 						</colgroup>
-						<tr>
-							<td><%=guestbookList.get(i).getGuestbook_no()%></td>
-							<td><%=guestbookList.get(i).getName()%></td>
-							<td><%=guestbookList.get(i).getReg_date()%></td>
-							<td><a href="./gbc?action=dform&no=<%=guestbookList.get(i).getGuestbook_no()%>">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan="4"><%=guestbookList.get(i).getContent()%></td>
+							<tr>
+								<td>
+									<%-- <%=guestbookList.get(i).getGuestbook_no() %> --%>${guestbookList.guestbook_no}</td>
+								<td>
+									<%-- <%=guestbookList.get(i).getName() %> --%>${guestbookList.name}</td>
+								<td>
+									<%-- <%=guestbookList.get(i).getReg_date() %> --%>${guestbookList.reg_date }</td>
+								<td><a href="./gbc?action=dform&no=<%-- <%=guestbookList.get(i).getGuestbook_no() %> --%>${guestbookList.guestbook_no}">[삭제]</a></td>
+							</tr>
+							<tr>
+							<td colspan="4"><%-- <%=guestbookList.get(i).getContent()%> --%>${guestbookList.content}</td>
 						</tr>
 					</table>
 					<br>
-					<%
+					</c:forEach>
+<%-- 					<%
 					}
-					%>
-
+					%--%>
 				</div>
 				<!-- //guestbook -->
 
@@ -117,7 +123,7 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gues
 		</div>
 		<!-- //container  -->
 
-		<jsp:include page="/WEB-INF/view/includes/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/view/includes/footer.jsp"></c:import>
 		
 	</div>
 	<!-- //wrap -->

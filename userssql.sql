@@ -19,7 +19,7 @@ nocache;
 
 --Table Insert
 insert into users
-values ( seq_user_no.nextval, 'thunderkyg', '1234', 'thomaskim', 'male'     );
+values (seq_user_no.nextval, 'thunderkyg', '1234', 'thomaskim', 'male');
     
 --Select
 select *
