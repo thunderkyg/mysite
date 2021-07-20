@@ -26,14 +26,14 @@ public class BoardController extends HttpServlet {
 		//Encoding
 		request.setCharacterEncoding("UTF-8");
 		
-		//BoardDao
-		BoardDao boardDao = new BoardDao();
-		
 		//Action
 		String action = request.getParameter("action");
 		
 		//if문 시작
 		if("list".equals(action)) {
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
+			
 			//리스트 불러오기
 			List<BoardVo> boardList  = boardDao.getList();
 			
@@ -44,6 +44,9 @@ public class BoardController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/view/board/list.jsp");
 			
 		} else if("delete".equals(action)) {
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
+			
 			//Parameter
 			int no = Integer.parseInt(request.getParameter("no"));
 			
@@ -67,6 +70,9 @@ public class BoardController extends HttpServlet {
 			
 		} else if("write".equals(action)) {
 			
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
+			
 			//authUser Attribute 가져오기
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -82,7 +88,11 @@ public class BoardController extends HttpServlet {
 			//Redirect
 			WebUtil.redirect(request, response, "./bc?action=list");			
 		} else if("read".equals(action)) {
+			//Parameter
 			int no = Integer.parseInt(request.getParameter("no"));
+			
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
 			
 			//조회수 +1
 			boardDao.addHit(no);
@@ -94,6 +104,8 @@ public class BoardController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/view/board/read.jsp");
 			
 		} else if("modifyform".equals(action)) {
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
 			
 			int no = Integer.parseInt(request.getParameter("no"));
 			
@@ -103,6 +115,8 @@ public class BoardController extends HttpServlet {
 			
 			WebUtil.forward(request, response, "/WEB-INF/view/board/modifyForm.jsp");
 		} else if("modify".equals(action)) {
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
 		
 			//authUser Attribute 가져오기
 			HttpSession session = request.getSession();
@@ -125,6 +139,8 @@ public class BoardController extends HttpServlet {
 				WebUtil.redirect(request, response, "./bc?action=list");
 			}
 		} else if("search".equals(action)) {
+			//BoardDao
+			BoardDao boardDao = new BoardDao();
 			
 			//Parameter
 			String search = request.getParameter("search");

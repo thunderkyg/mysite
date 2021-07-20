@@ -13,9 +13,9 @@ import com.javaex.vo.BoardVo;
 public class BoardDao {
 
 	// Field
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	private Connection conn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -73,6 +73,7 @@ public class BoardDao {
 			query += " 		  name ";
 			query += " from users us, board bo ";
 			query += " where us.no = bo.user_no ";
+			query += " order by board_no desc ";
 
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
