@@ -34,8 +34,10 @@ public class BoardController extends HttpServlet {
 			//BoardDao
 			BoardDao boardDao = new BoardDao();
 			
+			//Parameter
+			String keyword = request.getParameter("search");
 			//리스트 불러오기
-			List<BoardVo> boardList  = boardDao.getList();
+			List<BoardVo> boardList  = boardDao.getList(keyword);
 			
 			//Attribute로 데이터 넣기
 			request.setAttribute("boardList", boardList);
@@ -138,21 +140,17 @@ public class BoardController extends HttpServlet {
 			} else {
 				WebUtil.redirect(request, response, "./bc?action=list");
 			}
-		} else if("search".equals(action)) {
-			//BoardDao
-			BoardDao boardDao = new BoardDao();
-			
-			//Parameter
-			String search = request.getParameter("search");
-			
-			//Search List 불러오기
-			List<BoardVo> boardSearch  = boardDao.boardSearch(search);
-			
-			//Attribute로 데이터 넣기
-			request.setAttribute("boardList", boardSearch);
-			//Forward
-			WebUtil.forward(request, response, "/WEB-INF/view/board/list.jsp");
-		}
+		} /*
+			 * else if("search".equals(action)) { //BoardDao BoardDao boardDao = new
+			 * BoardDao();
+			 * 
+			 * //Parameter String search = request.getParameter("search");
+			 * 
+			 * //Search List 불러오기 List<BoardVo> boardSearch = boardDao.boardSearch(search);
+			 * 
+			 * //Attribute로 데이터 넣기 request.setAttribute("boardList", boardSearch); //Forward
+			 * WebUtil.forward(request, response, "/WEB-INF/view/board/list.jsp"); }
+			 */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
