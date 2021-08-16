@@ -23,6 +23,10 @@ increment by 1
 start with 1
 nocache;
 
+--Input Testing
+insert into board
+values (seq_board_no.nextval, '123', '123', 0, sysdate, 1);
+
 --Select 예시
 select *
 from board;
